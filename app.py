@@ -5,6 +5,14 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 import os
 
+from supabase import create_client
+
+SUPABASE_URL = "https://cefiqcndxqdhziwvppkd.supabase.co"
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."  # your full key
+SUPABASE_BUCKET = "avatars"
+
+supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.secret_key = 'secret123'
