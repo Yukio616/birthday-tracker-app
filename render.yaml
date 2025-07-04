@@ -2,11 +2,9 @@ services:
   - type: web
     name: birthday-tracker
     env: python
-    plan: free
     buildCommand: ""
-    startCommand: "python app.py"
+    startCommand: "python serve.py"
+    plan: free
     envVars:
-      - key: SUPABASE_URL
-        sync: false
-      - key: SUPABASE_KEY
-        sync: false
+      - key: FLASK_ENV
+        value: production
