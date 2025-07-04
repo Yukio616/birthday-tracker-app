@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}My Birthdays{% endblock %}
+{% block content %}
+<h2>🎂 Birthday List</h2>
+<form method="post" action="/add" class="birthday-form">
+  <input type="text" name="name" placeholder="Name" required>
+  <input type="date" name="date" required>
+  <button type="submit">Add</button>
+</form>
+{% for b in birthdays %}
+<div class="track">
+  <div>{{ loop.index }}. {{ b.name }}</div>
+  <div>{{ b.date.strftime('%b %d, %Y') }}</div>
+  <div><a href="/delete/{{ b.id }}" style="color:#f55">✖</a></div>
+</div>
+{% endfor %}
+{% endblock %}

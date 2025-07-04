@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: birthday-tracker
+    env: python
+    plan: free
+    buildCommand: ""
+    startCommand: "python app.py"
+    envVars:
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false

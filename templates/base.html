@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Birthday Tracker{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='spotify.css') }}">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <img src="{{ url_for('static', filename=user.profile_pic or 'default.jpg') }}" alt="Profile" class="avatar">
+      <h3>{{ user.username }}</h3>
+      <form method="post" action="/upload_profile" enctype="multipart/form-data">
+        <input type="file" name="profile" onchange="this.form.submit()">
+      </form>
+      <a href="/logout" class="spotify-btn" style="margin-top: 10px; display:inline-block; text-align:center;">Logout</a>
+    </aside>
+    <main class="main">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
